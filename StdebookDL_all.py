@@ -5,7 +5,6 @@
 import requests
 from bs4 import BeautifulSoup
 import feedparser
-import os
 
 #Options
     #True if books should be downloaded into the running directory
@@ -14,10 +13,8 @@ homedir = False
 echo = True
     #Path to download to if homedir is set to False
 destpath = "C:/test/"
-    #ebook formats to download
+    #ebook formats to download (this must be kept as a list)
 formats = ['epub','amazon','kobo']
-    #set True to download only new books
-newbooks = False
 
 baseurl = "https://standardebooks.org"
 feed = feedparser.parse("https://standardebooks.org/rss/new-releases")
@@ -32,7 +29,7 @@ def getlinks(feed,echo = False):
             print(link)
     return links
     
-#given a url and classtype, outputs url of book download link
+#given a url and format, outputs url of book download link
 def web(page,WebUrl,form,echo = False):
     if(page>0):
         url = WebUrl
